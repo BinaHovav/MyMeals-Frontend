@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles';
-// Define a type for the props expected by DaySelector
+
 type DaySelectorProps = {
   daysOfWeek: { short: string; full: string }[];
   selectedDay: string | null;

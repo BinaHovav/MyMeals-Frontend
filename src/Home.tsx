@@ -12,6 +12,7 @@ import {
 import styles from './styles';
 
 import DaySelector from './components/DaySelector';
+import MealsComponent from './components/Meals';
 
 type DayOfWeek = {
   short: string;
@@ -72,23 +73,15 @@ const HomePage: React.FC = () => {
             <Text style={styles.title}>
               {selectedDay ? `${getFullDayName(selectedDay)} menu` : 'Select a day'}
             </Text>
-            <View>
-              {mealCategories.map((category, index) => (
-                <View key={index}>
-                  <Text style={styles.label}>{category}</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={meals[index]}
-                    placeholder={`What are you having for ${category.toLowerCase()}?`}
-                    onChangeText={(text) => handleMealChange(text, index)}
-                  />
-                </View>
-              ))}
-            </View>
+            <MealsComponent
+              mealCategories={mealCategories}
+              meals={meals}
+              handleMealChange={handleMealChange}
+            />
             <View style={styles.buttonsContainer}>
-              {buttons.map((button, index) => (
-                <TouchableOpacity key={index} style={styles.button} onPress={button.onPress}>
-                  <Text style={styles.buttonText}>{button.label}</Text>
+              {buttons.map(({ label, onPress }, index) => (
+                <TouchableOpacity key={index} style={styles.button} onPress={onPress}>
+                  <Text style={styles.buttonText}>{label}</Text>
                 </TouchableOpacity>
               ))}
             </View>
