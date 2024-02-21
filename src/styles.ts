@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -40,
   },
-
   spinnerTextStyle: {
     color: '#F4F4DD',
   },
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: '#F4F4DD',
   },
-  buttonsContainer: {
+  optionsContainer: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',

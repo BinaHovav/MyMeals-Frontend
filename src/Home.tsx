@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
     return dayObject ? dayObject.full : '';
   };
 
-  const buttons = [
+  const options = [
     { label: 'Recipes', onPress: () => console.log('recipes') },
     {
       label: 'Consult with chatGPT',
@@ -78,8 +78,8 @@ const HomePage: React.FC = () => {
               meals={meals}
               handleMealChange={handleMealChange}
             />
-            <View style={styles.buttonsContainer}>
-              {buttons.map(({ label, onPress }, index) => (
+            <View style={styles.optionsContainer}>
+              {options.map(({ label, onPress }, index) => (
                 <TouchableOpacity key={index} style={styles.button} onPress={onPress}>
                   <Text style={styles.buttonText}>{label}</Text>
                 </TouchableOpacity>
