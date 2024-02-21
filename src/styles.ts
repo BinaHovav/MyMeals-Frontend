@@ -3,9 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
     backgroundColor: 'white',
-    // paddingTop: 50,
     marginTop: 50,
   },
   daysContainer: {
@@ -70,26 +68,8 @@ const styles = StyleSheet.create({
     height: 70,
     position: 'absolute',
     top: -40,
-    // left: 10,
   },
-  // modalContainer: {
-  //   backgroundColor: '#EC769A',
-  //   borderRadius: 10,
-  //   width: '85%',
-  //   flex: 1,
-  //   justifyContent: 'flex-start',
-  //   paddingTop: 30,
-  //   alignSelf: 'center',
-  //   paddingHorizontal: 20,
-  //   margin: 50,
-  // },
-  // modalContent: {
-  //   fontSize: 18,
-  //   fontWeight: '500',
-  //   lineHeight: 26,
-  //   color: '#F4F4DD',
-  //   paddingBottom: 20,
-  // },
+
   spinnerTextStyle: {
     color: '#F4F4DD',
   },
@@ -106,7 +86,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   button: {
-    // alignItems: 'center',
     backgroundColor: '#71a697',
     borderRadius: 10,
     padding: 10,
@@ -115,7 +94,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    // justifyContent: 'center',
     fontSize: 20,
     color: '#F4F4DD',
   },

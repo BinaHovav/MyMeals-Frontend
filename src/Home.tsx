@@ -48,6 +48,14 @@ const HomePage: React.FC = () => {
     return dayObject ? dayObject.full : '';
   };
 
+  const buttons = [
+    { label: 'Recipes', onPress: () => console.log('recipes') },
+    {
+      label: 'Consult with chatGPT',
+      onPress: () => console.log('chatGPT'),
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -78,12 +86,11 @@ const HomePage: React.FC = () => {
               ))}
             </View>
             <View style={styles.buttonsContainer}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Recipes</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Consult with chatGPT</Text>
-              </TouchableOpacity>
+              {buttons.map((button, index) => (
+                <TouchableOpacity key={index} style={styles.button} onPress={button.onPress}>
+                  <Text style={styles.buttonText}>{button.label}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
             <Text style={styles.error}>{errorMessage} </Text>
           </View>
