@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles';
+import { Day } from '../Home';
 
 type DaySelectorProps = {
-  daysOfWeek: { short: string; full: string }[];
-  selectedDay: string | null;
-  onSelectDay: (day: string) => void;
+  daysOfWeek: Day[];
+  selectedDay: Day | null;
+  onSelectDay: (day: Day) => void;
 };
 
 const DaySelector: React.FC<DaySelectorProps> = ({ daysOfWeek, selectedDay, onSelectDay }) => {
@@ -13,17 +14,17 @@ const DaySelector: React.FC<DaySelectorProps> = ({ daysOfWeek, selectedDay, onSe
     <View style={styles.daysContainer}>
       {daysOfWeek.map((day) => (
         <TouchableOpacity
-          key={day.short}
-          style={[styles.dayButton, selectedDay === day.short ? styles.selectedDayButton : null]}
-          onPress={() => onSelectDay(day.short)}
+          key={day}
+          style={[styles.dayButton, selectedDay === day ? styles.selectedDayButton : null]}
+          onPress={() => onSelectDay(day)}
         >
           <Text
             style={[
               styles.dayButtonText,
-              selectedDay === day.short ? styles.selectedDayButtonText : null,
+              selectedDay === day ? styles.selectedDayButtonText : null,
             ]}
           >
-            {day.short}
+            {day.substring(0, 3)}
           </Text>
         </TouchableOpacity>
       ))}

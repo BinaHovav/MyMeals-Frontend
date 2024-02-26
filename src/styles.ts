@@ -55,6 +55,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#F4F4DD',
   },
+  renderedText: {
+    fontSize: 20,
+    marginTop: 30,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#F4F4DD',
+  },
   input: {
     paddingLeft: 10,
     borderColor: 'black',
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: '#F4F4DD',
   },
-  optionsContainer: {
+  appButtonsContainer: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',

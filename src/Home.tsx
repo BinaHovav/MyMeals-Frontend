@@ -12,50 +12,47 @@ import {
 import styles from './styles';
 
 import DaySelector from './components/DaySelector';
-import MealsComponent from './components/Meals';
+import Meals from './components/Meals';
 
-type DayOfWeek = {
-  short: string;
-  full: string;
-};
+export enum MealCategories {
+  BREAKFAST = 'Breakfast',
+  LUNCH = 'Lunch',
+  DINNER = 'Dinner',
+}
+
+export enum Day {
+  Sun = 'Sunday',
+  Mon = 'Monday',
+  Tue = 'Tuesday',
+  Wed = 'Wednesday',
+  Thu = 'Thursday',
+  Fri = 'Friday',
+}
 
 const HomePage: React.FC = () => {
-  const [meals, setMeals] = useState<string[]>(['', '', '']);
+  const [meals, setMeals] = useState<string[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const [selectedDay, setSelectedDay] = useState<Day | null>(null);
 
-  const mealCategories: string[] = ['Breakfast', 'Lunch', 'Dinner'];
-  const daysOfWeek: DayOfWeek[] = [
-    { short: 'Sun', full: 'Sunday' },
-    { short: 'Mon', full: 'Monday' },
-    { short: 'Tue', full: 'Tuesday' },
-    { short: 'Wed', full: 'Wednesday' },
-    { short: 'Thu', full: 'Thursday' },
-    { short: 'Fri', full: 'Friday' },
+  const appButtons = [
+    { id: 'recipes', label: 'Recipes', onButtonPress: () => console.log('recipes') },
+    { id: 'chatGPT', label: 'Consult with chatGPT', onButtonPress: () => console.log('chatGPT') },
   ];
 
-  const handleMealChange = (text: string, index: number): void => {
-    const updatedMeals = [...meals];
-    updatedMeals[index] = text;
-    setMeals(updatedMeals);
+  type MealText = string;
+  type Category = string;
+
+  const handleBreakfastText = (text: MealText, category: Category) => {
+    console.log('text, category', text, category);
   };
 
-  const handleDayPress = (day: string): void => {
+  const handleDayPress = (day: Day | null): void => {
     setSelectedDay(day);
   };
 
-  const getFullDayName = (shortDay: string): string => {
-    const dayObject = daysOfWeek.find((day) => day.short === shortDay);
-    return dayObject ? dayObject.full : '';
+  const getDay = (day: Day | null): string => {
+    return day ? day : '';
   };
-
-  const options = [
-    { label: 'Recipes', onPress: () => console.log('recipes') },
-    {
-      label: 'Consult with chatGPT',
-      onPress: () => console.log('chatGPT'),
-    },
-  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,21 +63,27 @@ const HomePage: React.FC = () => {
         >
           <View style={styles.form}>
             <DaySelector
-              daysOfWeek={daysOfWeek}
+              daysOfWeek={Object.values(Day)}
               selectedDay={selectedDay}
               onSelectDay={handleDayPress}
             />
             <Text style={styles.title}>
-              {selectedDay ? `${getFullDayName(selectedDay)} menu` : 'Select a day'}
+              {selectedDay ? `${getDay(selectedDay)} menu` : 'Select a day'}
             </Text>
-            <MealsComponent
-              mealCategories={mealCategories}
-              meals={meals}
-              handleMealChange={handleMealChange}
-            />
-            <View style={styles.optionsContainer}>
-              {options.map(({ label, onPress }, index) => (
-                <TouchableOpacity key={index} style={styles.button} onPress={onPress}>
+            {selectedDay ? (
+              <Meals
+                handleBreakfastText={handleBreakfastText}
+                mealCategories={Object.values(MealCategories)}
+                meals={meals}
+              />
+            ) : (
+              <View style={styles.form}>
+                <Text>Welcome to MyMeals!</Text>
+              </View>
+            )}
+            <View style={styles.appButtonsContainer}>
+              {appButtons.map(({ id, label, onButtonPress }) => (
+                <TouchableOpacity key={id} style={styles.button} onPress={onButtonPress}>
                   <Text style={styles.buttonText}>{label}</Text>
                 </TouchableOpacity>
               ))}
