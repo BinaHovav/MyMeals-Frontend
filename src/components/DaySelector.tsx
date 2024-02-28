@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles';
-import { Day } from '../models/meals.model';
+import { Day } from '../models/app.model';
 
 type DaySelectorProps = {
   daysOfWeek: Day[];

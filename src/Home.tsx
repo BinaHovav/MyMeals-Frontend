@@ -13,7 +13,9 @@ import styles from './styles';
 
 import DaySelector from './components/DaySelector';
 import Meals from './components/Meals';
-import { MealCategories, MealText, Category, AppButton, Day } from './models/meals.model';
+
+import { MealCategories, MealText, Category } from './models/meals.model';
+import { AppButton, Day } from './models/app.model';
 
 const Home: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
@@ -31,10 +33,6 @@ const Home: React.FC = () => {
     setSelectedDay(day);
   };
 
-  const getDay = (day: Day): string => {
-    return day;
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -48,9 +46,7 @@ const Home: React.FC = () => {
               selectedDay={selectedDay}
               onSelectDay={handleDayPress}
             />
-            <Text style={styles.title}>
-              {selectedDay ? `${getDay(selectedDay)} menu` : 'Select a day'}
-            </Text>
+            <Text style={styles.title}>{selectedDay ? `${selectedDay} menu` : 'Select a day'}</Text>
             {selectedDay ? (
               <Meals
                 handleBreakfastText={handleBreakfastText}
