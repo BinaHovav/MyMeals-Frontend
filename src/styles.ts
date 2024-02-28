@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: '#F4F4DD',
   },
-  appButtonsContainer: {
+  homeButtonsContainer: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',

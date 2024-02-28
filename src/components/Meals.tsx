@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Button } from 'react-native';
 import styles from '../styles';
-import { MealCategories } from '../Home';
+import { MealCategories } from '../models/meals.model';
 
 type MealsComponentProps = {
   mealCategories: MealCategories[];
-  meals: string[];
   handleBreakfastText: (text: string, category: MealCategories) => void;
 };
 
@@ -62,17 +61,6 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleBreakfastT
           >
             <Text>Enter</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={() => onMealEnter('', '')}> */}
-          {/* <Text style={styles.renderedText}>
-          {category === 'Breakfast' ? breakfastText : category === 'Lunch' ? lunchText : dinnerText}
-        </Text> */}
-          {/* <Text style={styles.renderedText}>
-            {category === 'Breakfast'
-              ? breakfastText
-              : category === 'Lunch'
-              ? lunchText
-              : dinnerText}
-          </Text> */}
         </View>
       ))}
     </View>

@@ -13,45 +13,26 @@ import styles from './styles';
 
 import DaySelector from './components/DaySelector';
 import Meals from './components/Meals';
+import { MealCategories, MealText, Category, AppButton, Day } from './models/meals.model';
 
-export enum MealCategories {
-  BREAKFAST = 'Breakfast',
-  LUNCH = 'Lunch',
-  DINNER = 'Dinner',
-}
-
-export enum Day {
-  Sun = 'Sunday',
-  Mon = 'Monday',
-  Tue = 'Tuesday',
-  Wed = 'Wednesday',
-  Thu = 'Thursday',
-  Fri = 'Friday',
-}
-
-const HomePage: React.FC = () => {
-  const [meals, setMeals] = useState<string[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+const Home: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
 
-  const appButtons = [
+  const homeButtons: AppButton[] = [
     { id: 'recipes', label: 'Recipes', onButtonPress: () => console.log('recipes') },
     { id: 'chatGPT', label: 'Consult with chatGPT', onButtonPress: () => console.log('chatGPT') },
   ];
-
-  type MealText = string;
-  type Category = string;
 
   const handleBreakfastText = (text: MealText, category: Category) => {
     console.log('text, category', text, category);
   };
 
-  const handleDayPress = (day: Day | null): void => {
+  const handleDayPress = (day: Day): void => {
     setSelectedDay(day);
   };
 
-  const getDay = (day: Day | null): string => {
-    return day ? day : '';
+  const getDay = (day: Day): string => {
+    return day;
   };
 
   return (
@@ -74,21 +55,19 @@ const HomePage: React.FC = () => {
               <Meals
                 handleBreakfastText={handleBreakfastText}
                 mealCategories={Object.values(MealCategories)}
-                meals={meals}
               />
             ) : (
               <View style={styles.form}>
                 <Text>Welcome to MyMeals!</Text>
               </View>
             )}
-            <View style={styles.appButtonsContainer}>
-              {appButtons.map(({ id, label, onButtonPress }) => (
+            <View style={styles.homeButtonsContainer}>
+              {homeButtons.map(({ id, label, onButtonPress }) => (
                 <TouchableOpacity key={id} style={styles.button} onPress={onButtonPress}>
                   <Text style={styles.buttonText}>{label}</Text>
                 </TouchableOpacity>
               ))}
             </View>
-            <Text style={styles.error}>{errorMessage} </Text>
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -96,4 +75,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default Home;
