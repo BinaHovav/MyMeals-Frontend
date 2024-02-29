@@ -50,14 +50,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginTop: 30,
-    marginBottom: 10,
-    fontWeight: 'bold',
-    color: '#F4F4DD',
-  },
-  renderedText: {
-    fontSize: 20,
-    marginTop: 30,
+    marginTop: 35,
     marginBottom: 10,
     fontWeight: 'bold',
     color: '#F4F4DD',
@@ -69,6 +62,23 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 10,
     backgroundColor: '#F4F4DD',
+    width: 320,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  enterButton: {
+    marginLeft: 10,
+    fontSize: 20,
+    color: 'blue',
+  },
+  enteredText: {
+    fontSize: 16,
+    backgroundColor: '#90CF44',
+    alignSelf: 'flex-start',
+    padding: 4,
+    marginTop: 5,
   },
   logo: {
     width: 180,
@@ -76,20 +86,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -40,
   },
-  spinnerTextStyle: {
-    color: '#F4F4DD',
-  },
-  error: {
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 26,
-    color: '#F4F4DD',
-  },
   homeButtonsContainer: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',
-    marginTop: 30,
+    marginTop: 50,
   },
   button: {
     backgroundColor: '#71a697',

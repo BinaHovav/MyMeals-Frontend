@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     { id: 'chatGPT', label: 'Consult with chatGPT', onButtonPress: () => console.log('chatGPT') },
   ];
 
-  const handleBreakfastText = (text: MealText, category: Category) => {
+  const handleMealText = (text: MealText, category: Category) => {
     console.log('text, category', text, category);
   };
 
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
             <Text style={styles.title}>{selectedDay ? `${selectedDay} menu` : 'Select a day'}</Text>
             {selectedDay ? (
               <Meals
-                handleBreakfastText={handleBreakfastText}
+                handleMealText={handleMealText}
                 mealCategories={Object.values(MealCategories)}
               />
             ) : (
