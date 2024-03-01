@@ -1,41 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../styles';
-import { MealCategories } from '../models/meals.model';
+import { MealCategories, MealInput, MealsComponentProps } from '../models/meals.model';
 
-type MealsComponentProps = {
-  mealCategories: MealCategories[];
-  handleMealText: (text: MealText, category: MealCategories) => void;
-};
-
-type MealText = string;
-
-const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealText }) => {
-  const [mealText, setMealText] = useState<Record<MealCategories, MealText>>({
+const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput }) => {
+  const [mealInput, setMealInput] = useState<Record<MealCategories, MealInput>>({
     [MealCategories.BREAKFAST]: '',
     [MealCategories.LUNCH]: '',
     [MealCategories.DINNER]: '',
   });
-  const [showEnteredText, setShowEnteredText] = useState<Record<MealCategories, boolean>>({
+  const [showUserInput, setShowUserInput] = useState<Record<MealCategories, boolean>>({
     [MealCategories.BREAKFAST]: false,
     [MealCategories.LUNCH]: false,
     [MealCategories.DINNER]: false,
   });
 
-  const onMealEnter = (text: MealText, category: MealCategories) => {
-    setMealText((prev) => ({
+  const onMealEnter = (text: MealInput, category: MealCategories) => {
+    setMealInput((prev) => ({
       ...prev,
       [category]: text,
     }));
   };
 
-  const getCategoryInput = (category: MealCategories) => {
-    return mealText[category];
-  };
-
-  const handleMealTextPress = (category: MealCategories) => {
-    handleMealText(getCategoryInput(category), category);
-    setShowEnteredText((prev) => ({
+  const handleMealInputPress = (category: MealCategories) => {
+    handleMealInput(mealInput[category], category);
+    setShowUserInput((prev) => ({
       ...prev,
       [category]: true,
     }));
@@ -49,17 +38,15 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealText }
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
-              value={getCategoryInput(category)}
+              value={mealInput[category]}
               placeholder={`What are you having for ${category.toLowerCase()}?`}
               onChangeText={(text) => onMealEnter(text, category)}
             />
-            <TouchableOpacity onPress={() => handleMealTextPress(category)}>
+            <TouchableOpacity onPress={() => handleMealInputPress(category)}>
               <Text style={styles.enterButton}>+</Text>
             </TouchableOpacity>
           </View>
-          {showEnteredText[category] && (
-            <Text style={styles.enteredText}>{getCategoryInput(category)}</Text>
-          )}
+          {showUserInput[category] && <Text style={styles.enteredText}>{mealInput[category]}</Text>}
         </View>
       ))}
     </View>

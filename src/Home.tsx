@@ -14,7 +14,7 @@ import styles from './styles';
 import DaySelector from './components/DaySelector';
 import Meals from './components/Meals';
 
-import { MealCategories, MealText, Category } from './models/meals.model';
+import { MealCategories, MealInput, Category } from './models/meals.model';
 import { AppButton, Day } from './models/app.model';
 
 const Home: React.FC = () => {
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     { id: 'chatGPT', label: 'Consult with chatGPT', onButtonPress: () => console.log('chatGPT') },
   ];
 
-  const handleMealText = (text: MealText, category: Category) => {
+  const handleMealInput = (text: MealInput, category: Category) => {
     console.log('text, category', text, category);
   };
 
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
             <Text style={styles.title}>{selectedDay ? `${selectedDay} menu` : 'Select a day'}</Text>
             {selectedDay ? (
               <Meals
-                handleMealText={handleMealText}
+                handleMealInput={handleMealInput}
                 mealCategories={Object.values(MealCategories)}
               />
             ) : (
