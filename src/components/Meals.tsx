@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../styles';
-import { MealCategories, MealInput, MealsComponentProps } from '../models/meals.model';
+import {
+  MealCategories,
+  MealInput,
+  MealsComponentProps,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from '../models/meals.model';
 
 const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput }) => {
   const [mealInput, setMealInput] = useState<Record<MealCategories, MealInput>>({
