@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-import DaySelector from './components/DaySelector';
-import Meals from './components/Meals';
+import DaySelector from './components/daySelector/DaySelector';
+import Meals from './components/meals/Meals';
 
 import { MealCategories, MealInput, Category } from './models/meals.model';
 import { AppButton, Day } from './models/app.model';

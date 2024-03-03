@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles';
+import styles from '../../styles';
 import {
   MealCategories,
   MealInput,
@@ -8,7 +8,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-} from '../models/meals.model';
+} from '../../models/meals.model';
 
 const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput }) => {
   const [mealInput, setMealInput] = useState<Record<MealCategories, MealInput>>({
@@ -49,7 +49,10 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput 
               placeholder={`What are you having for ${category.toLowerCase()}?`}
               onChangeText={(text) => onMealEnter(text, category)}
             />
-            <TouchableOpacity onPress={() => handleMealInputPress(category)}>
+            <TouchableOpacity
+              onPress={() => handleMealInputPress(category)}
+              testID={`plus-button-${category}`} // Add a unique test ID
+            >
               <Text style={styles.enterButton}>+</Text>
             </TouchableOpacity>
           </View>
