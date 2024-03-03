@@ -51,7 +51,7 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput 
             />
             <TouchableOpacity
               onPress={() => handleMealInputPress(category)}
-              testID={`plus-button-${category}`} // Add a unique test ID
+              testID={`plus-button-${category}`}
             >
               <Text style={styles.enterButton}>+</Text>
             </TouchableOpacity>

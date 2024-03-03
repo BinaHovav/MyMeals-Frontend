@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import DaySelector from '../DaySelector';
-import { Day } from '../../../models/app.model';
+import DaySelector from './DaySelector';
+import { Day } from '../../models/app.model';
 
 describe('DaySelector', () => {
-  const daysOfWeek: Day[] = [Day.Sun, Day.Mon, Day.Tue, Day.Wed, Day.Thu, Day.Fri];
+  const daysOfWeek: Day[] = Object.values(Day);
 
-  test('renders days correctly', () => {
+  it('renders days correctly', () => {
     const { getByText } = render(
       <DaySelector daysOfWeek={daysOfWeek} selectedDay={null} onSelectDay={() => {}} />
     );
@@ -17,13 +17,13 @@ describe('DaySelector', () => {
     });
   });
 
-  test('calls onSelectDay when a day is pressed', () => {
+  it('calls onSelectDay when a day is pressed', () => {
     const onSelectDayMock = jest.fn();
     const { getByText } = render(
       <DaySelector daysOfWeek={daysOfWeek} selectedDay={null} onSelectDay={onSelectDayMock} />
     );
 
-    fireEvent.press(getByText('Sun'));
+    fireEvent.press(getByText(Day.Sun));
     expect(onSelectDayMock).toHaveBeenCalledWith(Day.Sun);
   });
 });
