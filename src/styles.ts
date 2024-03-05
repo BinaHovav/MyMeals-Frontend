@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginTop: 35,
+    marginTop: 15,
     marginBottom: 10,
     fontWeight: 'bold',
     color: '#F4F4DD',
@@ -71,18 +71,20 @@ const styles = StyleSheet.create({
   enterButton: {
     marginLeft: 10,
     fontSize: 20,
-    color: 'blue',
+    color: '#F4F4DD',
   },
-  enteredText: {
-    fontSize: 16,
+  enteredItem: {
+    fontSize: 30,
     backgroundColor: '#90CF44',
     alignSelf: 'flex-start',
-    padding: 4,
+    padding: 5,
     marginTop: 5,
+    marginRight: 5,
+    marginLeft: 5,
   },
   logo: {
-    width: 180,
-    height: 70,
+    width: 225,
+    height: 75,
     position: 'absolute',
     top: -40,
   },
@@ -103,6 +105,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     color: '#F4F4DD',
+  },
+  limitMessage: {
+    fontSize: 12,
+    backgroundColor: '#90CF44',
+    alignSelf: 'flex-start',
+    padding: 4,
+    marginTop: 5,
   },
 });
 
