@@ -1,4 +1,4 @@
-export { View, Text, TextInput, TouchableOpacity } from 'react-native';
+export { View, Text, TextInput, TextInputProps, TouchableOpacity, FlatList } from 'react-native';
 
 export enum MealCategories {
   BREAKFAST = 'Breakfast',
@@ -7,9 +7,9 @@ export enum MealCategories {
 }
 
 export type MealInput = string;
+export type MealList = string[];
 export type Category = string;
 
 export type MealsComponentProps = {
   mealCategories: MealCategories[];
-  handleMealInput: (text: MealInput, category: MealCategories) => void;
 };

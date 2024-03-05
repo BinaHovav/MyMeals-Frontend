@@ -3,26 +3,35 @@ import styles from '../../styles';
 import {
   MealCategories,
   MealInput,
+  MealList,
   MealsComponentProps,
   View,
   Text,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from '../../models/meals.model';
 
-const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput }) => {
+const MAX_ITEMS = 3;
+
+const Meals: React.FC<MealsComponentProps> = ({ mealCategories }) => {
   const [mealInput, setMealInput] = useState<Record<MealCategories, MealInput>>({
     [MealCategories.BREAKFAST]: '',
     [MealCategories.LUNCH]: '',
     [MealCategories.DINNER]: '',
   });
-  const [showUserInput, setShowUserInput] = useState<Record<MealCategories, boolean>>({
-    [MealCategories.BREAKFAST]: false,
-    [MealCategories.LUNCH]: false,
-    [MealCategories.DINNER]: false,
+  const [mealList, setMealList] = useState<Record<MealCategories, MealList>>({
+    [MealCategories.BREAKFAST]: [],
+    [MealCategories.LUNCH]: [],
+    [MealCategories.DINNER]: [],
+  });
+  const [enteredText, setEnteredText] = useState<Record<MealCategories, MealInput>>({
+    [MealCategories.BREAKFAST]: '',
+    [MealCategories.LUNCH]: '',
+    [MealCategories.DINNER]: '',
   });
 
-  const onMealEnter = (text: MealInput, category: MealCategories) => {
+  const onMealInputChange = (text: MealInput, category: MealCategories) => {
     setMealInput((prev) => ({
       ...prev,
       [category]: text,
@@ -30,10 +39,23 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput 
   };
 
   const handleMealInputPress = (category: MealCategories) => {
-    handleMealInput(mealInput[category], category);
-    setShowUserInput((prev) => ({
+    const currentList = [...mealList[category], mealInput[category]];
+
+    if (currentList.length <= MAX_ITEMS) {
+      setEnteredText((prev) => ({
+        ...prev,
+        [category]: currentList,
+      }));
+
+      setMealList((prev) => ({
+        ...prev,
+        [category]: currentList,
+      }));
+    }
+
+    setMealInput((prev) => ({
       ...prev,
-      [category]: true,
+      [category]: '',
     }));
   };
 
@@ -47,16 +69,35 @@ const Meals: React.FC<MealsComponentProps> = ({ mealCategories, handleMealInput 
               style={styles.input}
               value={mealInput[category]}
               placeholder={`What are you having for ${category.toLowerCase()}?`}
-              onChangeText={(text) => onMealEnter(text, category)}
+              onChangeText={(text) => onMealInputChange(text, category)}
             />
             <TouchableOpacity
               onPress={() => handleMealInputPress(category)}
-              testID={`plus-button-${category}`} // Add a unique test ID
+              testID={`plus-button-${category}`}
             >
               <Text style={styles.enterButton}>+</Text>
             </TouchableOpacity>
           </View>
-          {showUserInput[category] && <Text style={styles.enteredText}>{mealInput[category]}</Text>}
+          {enteredText[category].length > 0 ? (
+            <>
+              <FlatList
+                data={enteredText[category].slice(0, MAX_ITEMS)}
+                keyExtractor={(item, itemIndex) => itemIndex.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => (
+                  <View style={styles.enteredItem}>
+                    <Text>{item}</Text>
+                  </View>
+                )}
+              />
+              {enteredText[category].length >= MAX_ITEMS && (
+                <Text style={styles.limitMessage}>
+                  You've reached the maximum of {MAX_ITEMS} items per meal
+                </Text>
+              )}
+            </>
+          ) : null}
         </View>
       ))}
     </View>
