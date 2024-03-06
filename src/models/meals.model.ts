@@ -1,3 +1,5 @@
+export { View, Text, TextInput, TouchableOpacity } from 'react-native';
+
 export enum MealCategories {
   BREAKFAST = 'Breakfast',
   LUNCH = 'Lunch',
@@ -11,5 +13,3 @@ export type MealsComponentProps = {
   mealCategories: MealCategories[];
   handleMealInput: (text: MealInput, category: MealCategories) => void;
 };
-
-export { View, Text, TextInput, TouchableOpacity } from 'react-native';
