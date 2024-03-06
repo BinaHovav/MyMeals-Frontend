@@ -12,8 +12,7 @@ describe('DaySelector', () => {
     );
 
     daysOfWeek.forEach((day) => {
-      const abbreviatedDay = day.substring(0, 3);
-      expect(getByText(abbreviatedDay)).toBeDefined();
+      expect(getByText(day)).toBeDefined();
     });
   });
 
